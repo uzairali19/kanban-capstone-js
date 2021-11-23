@@ -53,11 +53,11 @@ npx eslint .
 - Twitter: [@uzairali751](https://twitter.com/Uzairali751)
 - LinkedIn: [Uzair Ali](https://www.linkedin.com/in/uzair-ali-9641/)
 
-👤 **Uzair Ali**
+👤 **Mphatso Lichapa**
 
-- GitHub: [@uzairali19](https://github.com/uzairali19)
-- Twitter: [@uzairali751](https://twitter.com/Uzairali751)
-- LinkedIn: [Uzair Ali](https://www.linkedin.com/in/uzair-ali-964187166/)
+- GitHub: [@Lichapa](https://github.com/Lichapa)
+- Twitter: [@LichapaMphatso](https://twitter.com/LichapaMphatso)
+- LinkedIn: [mphatsolichapa](https://www.linkedin.com/in/mphatsolichapa)
 
 👤 **Grace Kabaghe**
 
