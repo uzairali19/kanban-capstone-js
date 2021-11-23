@@ -51,7 +51,7 @@ npx eslint .
 
 - GitHub: [@uzairali19](https://github.com/uzairali19)
 - Twitter: [@uzairali751](https://twitter.com/Uzairali751)
-- LinkedIn: [Uzair Ali](https://www.linkedin.com/in/uzair-ali-964187166/)
+- LinkedIn: [Uzair Ali](https://www.linkedin.com/in/uzair-ali-9641/)
 
 👤 **Uzair Ali**
 
@@ -59,11 +59,10 @@ npx eslint .
 - Twitter: [@uzairali751](https://twitter.com/Uzairali751)
 - LinkedIn: [Uzair Ali](https://www.linkedin.com/in/uzair-ali-964187166/)
 
-👤 **Uzair Ali**
+👤 **Grace Kabaghe**
 
-- GitHub: [@uzairali19](https://github.com/uzairali19)
-- Twitter: [@uzairali751](https://twitter.com/Uzairali751)
-- LinkedIn: [Uzair Ali](https://www.linkedin.com/in/uzair-ali-964187166/)
+- GitHub: [@gracekabaghe](https://github.com/gracekabaghe)
+- LinkedIn: [Grace Kabaghe](https://www.linkedin.com/in/grace-kabaghe)
 
 ## 🤝 Contributing
 
