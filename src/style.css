@@ -2,3 +2,64 @@
   margin: 0;
   font-family: sans-serif;
 }
+
+.navbar {
+  width: 100%;
+  justify-content: center;
+}
+
+#heroBody {
+  align-items: flex-start;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  top: 0;
+  height: 100px;
+}
+
+.main-div {
+  text-align: center;
+  display: contents;
+}
+
+.media-left {
+  width: 100%;
+}
+
+.media {
+  flex-direction: column;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  margin-left: 30px;
+  margin-bottom: 130px;
+}
+
+.media-content {
+  width: 100%;
+}
+
+.like-text {
+  margin-left: 30px;
+}
+
+.image > img {
+  height: 170px;
+  width: 200px;
+}
+
+/* .flex-container > div > article {
+  width: inherit;
+  height: inherit;
+}
+
+.media-content {
+  height: 100px;
+} */
+
+.show {
+  display: block;
+}

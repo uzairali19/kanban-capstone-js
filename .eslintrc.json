@@ -15,7 +15,8 @@
       "no-param-reassign": "off",
       "eol-last": "off",
       "class-methods-use-this":"off",
-      "import/no-unresolved": "off"
+      "import/no-unresolved": "off",
+      "no-plusplus": "off"
     },
     "ignorePatterns": [
       "dist/",
