@@ -31,26 +31,49 @@
       <div class="hero-body" id="heroBody">
         <div class="container">
           <div class="flex-container" id="body"></div>
-          <div class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-              <header class="modal-card-head">
-                <p class="modal-card-title">Modal title</p>
-                <button
-                  class="delete"
-                  aria-label="close"
-                  type="button"
-                ></button>
-              </header>
-              <section class="modal-card-body"></section>
-              <footer class="modal-card-foot">
-                <button class="button is-success" type="button">
-                  Save changes
-                </button>
-                <button class="button" type="button">Cancel</button>
-              </footer>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Comments</p>
+            <button id="close" class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <div class="card">
+              <div id="cardJS"></div>
+              
+              <div class="card-content">
+                <div class="content">
+                  <h2 class="title is-2">Add a comment</h2>
+                  <form action="">
+                    <div class="field">
+                      <input
+                        class="input"
+                        type="text"
+                        id="name"
+                        placeholder="Your Name"
+                      />
+                    </div>
+                    <div class="field">
+                      <textarea
+                        class="textarea"
+                        placeholder="Your insights"
+                      ></textarea>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-          </div>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success">Save changes</button>
+            <button class="button">Cancel</button>
+          </footer>
         </div>
       </div>
     </section>

@@ -13,6 +13,8 @@ const getData = async () => {
 };
 
 const mainBody = document.querySelector('#body');
+const modal = document.querySelector('.modal');
+const closeModal = document.getElementById('close');
 
 getData().then((v) => {
   for (let i = 0; i < 15; i++) {
@@ -39,7 +41,14 @@ getData().then((v) => {
           </div>
         </nav>
         <div class="level">
-          <button class="button is-primary is-small">Comments</button>
+          <button 
+            id="${v[i].id}"
+            class="modal-button button is-primary is-small"
+            data-target="modal"
+            aria-haspopup="true"
+            >
+            Comments
+            </button>
           <button class="button is-warning is-small">
             Reservations
           </button>
@@ -53,12 +62,53 @@ getData().then((v) => {
   }
 });
 
-// btn.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   modal.classList.toggle('show');
-// });
+function commentsCard(e) {
+  const idNumber = e.target;
+  const meme = getData();
+  if (meme.id === idNumber){
+    const commentItems = `
+      <div class="card-image">
+              <figure class="image is-3by2">
+                <img
+                  src="https://bulma.io/images/placeholders/1280x960.png"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img
+                      src="https://bulma.io/images/placeholders/96x96.png"
+                      alt="Placeholder image"
+                    />
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">John Smith</p>
+                  <p class="subtitle is-6">@johnsmith</p>
+                </div>
+              </div>
+    `;  }
 
-// closeModal.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   modal.classList.remove('show');
-// });
+
+}
+
+mainBody.addEventListener('click', manipulate);
+
+function manipulate(e) {
+  const item = e.target;
+  console.log(item.id);
+
+  if (item.classList.contains('modal-button')) {
+
+    modal.classList.add('is-active');
+    commentsCard(item.id);
+  }
+}
+
+closeModal.addEventListener('click', (e) => {
+  e.preventDefault();
+  modal.classList.remove('is-active');
+});
