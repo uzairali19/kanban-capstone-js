@@ -63,3 +63,25 @@
 .show {
   display: block;
 }
+
+.res-meme-name,
+.form-content {
+  margin-left: 40%;
+  color: #fff;
+}
+
+input {
+  margin-bottom: 10px;
+  width: 40%;
+}
+
+.input,
+.text-area {
+  width: 80%;
+}
+
+.res-list {
+  display: flex;
+  gap: 5px;
+  color: #fff;
+}
