@@ -73,4 +73,35 @@ getData().then((v) => {
     mainDiv.innerHTML = bodyItems;
     mainBody.appendChild(mainDiv);
   }
+
+  const likeBtn = document.querySelectorAll('.like');
+  const likeText = document.querySelectorAll('.like-text');
+  const id = [];
+  const likes = [];
+  window.addEventListener('load', (e) => {
+    e.preventDefault();
+    getLikes(api).then((b) => {
+      b.forEach((v) => {
+        id.push(v.item_id);
+        likes.push(v.likes);
+      });
+      likeText.forEach((text, i) => {
+        if (text.id === id[i]) {
+          text.innerHTML = `${likes[i]} likes`;
+        }
+      });
+    });
+  });
+
+  likeBtn.forEach((v) => {
+    v.addEventListener('click', (e) => {
+      e.preventDefault();
+      likeMeal(v.id);
+      likeText.forEach((text, i) => {
+        if (text.id === v.id) {
+          text.innerHTML = `${likes[i] + e.detail} likes`;
+        }
+      });
+    });
+  });
 });
