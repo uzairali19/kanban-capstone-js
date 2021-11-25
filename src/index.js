@@ -1,7 +1,6 @@
 import 'font-awesome/css/font-awesome.min.css';
 import 'bulma/css/bulma.css';
 import './style.css';
-import { forEach } from 'lodash';
 
 const url = 'https://api.imgflip.com/get_memes';
 
@@ -66,12 +65,11 @@ getData().then((v) => {
 
 function commentsCard(e) {
   const itemID = e;
-  let memes = getData();
+  const memes = getData();
   memes.then((v) => {
     v.forEach((meme) => {
-      if (meme.id === itemID){
-         console.log(meme.id);
-         const commentItem = `
+      if (meme.id === itemID) {
+        const commentItem = `
            <div class="card-image">
               <figure class="image is-3by2">
                 <img
@@ -99,20 +97,16 @@ function commentsCard(e) {
               
               
               `;
-         const cardItem = document.createElement('div');
-         cardItem.innerHTML = commentItem;
-         cardJS.appendChild(cardItem);
+        const cardItem = document.createElement('div');
+        cardItem.innerHTML = commentItem;
+        cardJS.appendChild(cardItem);
       }
-     
     });
-    console.log(v[10].url);
   });
 }
 
-mainBody.addEventListener('click', manipulate);
-
 function manipulate(e) {
-  let item = e.target;
+  const item = e.target;
 
   if (item.classList.contains('modal-button')) {
     modal.classList.add('is-active');
@@ -124,3 +118,5 @@ closeModal.addEventListener('click', (e) => {
   e.preventDefault();
   modal.classList.remove('is-active');
 });
+
+mainBody.addEventListener('click', manipulate);
