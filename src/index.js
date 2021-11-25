@@ -1,6 +1,7 @@
 import 'font-awesome/css/font-awesome.min.css';
 import 'bulma/css/bulma.css';
 import './style.css';
+import { forEach } from 'lodash';
 
 const url = 'https://api.imgflip.com/get_memes';
 
@@ -12,6 +13,7 @@ const getData = async () => {
   return scores;
 };
 
+const cardJS = document.querySelector('#cardJS');
 const mainBody = document.querySelector('#body');
 const modal = document.querySelector('.modal');
 const closeModal = document.getElementById('close');
@@ -63,46 +65,56 @@ getData().then((v) => {
 });
 
 function commentsCard(e) {
-  const idNumber = e.target;
-  const meme = getData();
-  if (meme.id === idNumber){
-    const commentItems = `
-      <div class="card-image">
+  const itemID = e;
+  let memes = getData();
+  memes.then((v) => {
+    v.forEach((meme) => {
+      if (meme.id === itemID){
+         console.log(meme.id);
+         const commentItem = `
+           <div class="card-image">
               <figure class="image is-3by2">
                 <img
-                  src="https://bulma.io/images/placeholders/1280x960.png"
+                  src="${meme.url}"
                   alt="Placeholder image"
                 />
-              </figure>
+              </figure>              
             </div>
             <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img
-                      src="https://bulma.io/images/placeholders/96x96.png"
-                      alt="Placeholder image"
-                    />
-                  </figure>
+              
+                <div class="content">
+                  <h2 class="subtitle is-3 is-spaced ">Name: ${meme.name}</h2>
+                  <p>height: ${meme.height}  Width: ${meme.width}</p>
+                  <p>Box count: ${meme.box_count}</p>
+
+                  
                 </div>
-                <div class="media-content">
-                  <p class="title is-4">John Smith</p>
-                  <p class="subtitle is-6">@johnsmith</p>
+
+                <div class="content">
+                  <h2 class="subtitel is-4 is-spaced" > Comments (2)</h2>
+                  <p>03/11/2021 Uzair: So funny!</p>
+                  <p>21/11/2021 Grace: Mhhhhhhh!!!</p>
                 </div>
               </div>
-    `;  }
-
-
+              
+              
+              `;
+         const cardItem = document.createElement('div');
+         cardItem.innerHTML = commentItem;
+         cardJS.appendChild(cardItem);
+      }
+     
+    });
+    console.log(v[10].url);
+  });
 }
 
 mainBody.addEventListener('click', manipulate);
 
 function manipulate(e) {
-  const item = e.target;
-  console.log(item.id);
+  let item = e.target;
 
   if (item.classList.contains('modal-button')) {
-
     modal.classList.add('is-active');
     commentsCard(item.id);
   }
