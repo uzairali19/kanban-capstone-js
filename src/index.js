@@ -3,6 +3,7 @@ import 'bulma/css/bulma.css';
 import './style.css';
 
 const url = 'https://api.imgflip.com/get_memes';
+const api = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/likes';
 
 const getData = async () => {
   const scores = await fetch(url)
@@ -13,6 +14,24 @@ const getData = async () => {
 };
 
 const mainBody = document.querySelector('#body');
+
+const likeMeal = async (memeId) => {
+  await fetch(api, {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    body: JSON.stringify({
+      item_id: memeId,
+    }),
+  });
+};
+
+const getLikes = async (api) => {
+  const resp = await fetch(api)
+    .then((res) => res.json())
+    .then((resData) => resData)
+    .catch((err) => err);
+  return resp;
+};
 
 getData().then((v) => {
   for (let i = 0; i < 15; i++) {
@@ -30,12 +49,12 @@ getData().then((v) => {
         </div>
         <nav class="level is-mobile">
           <div class="level-left">
-            <a class="level-item">
+            <a id="${v[i].id}" class="level-item like">
               <span class="icon is-small"
                 ><i class="fa fa-heart"></i>
-              </span>
-              <p class="like-text">like</p>
+              </span> 
             </a>
+            <p id="${v[i].id}" class="like-text"></p>
           </div>
         </nav>
         <div class="level">
@@ -52,13 +71,3 @@ getData().then((v) => {
     mainBody.appendChild(mainDiv);
   }
 });
-
-// btn.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   modal.classList.toggle('show');
-// });
-
-// closeModal.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   modal.classList.remove('show');
-// });
