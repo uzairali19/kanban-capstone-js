@@ -35,6 +35,9 @@ const getLikes = async (api) => {
 
 getData().then((v) => {
   for (let i = 0; i < 15; i++) {
+    if (v[i].name.length > 40) {
+      v[i].name = `${v[i].name.substr(0, 23)}..`;
+    }
     const bodyItems = `<article class="media">
       <figure class="media-left">
         <p class="image">
