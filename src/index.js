@@ -80,7 +80,7 @@ getData().then((v) => {
               <h3 class="form-content subtitle">
                 Add a reservation
               </h3>
-              <form class="res-form" action="">
+              <form class="res-form" action="GET">
                 <input class="input is-primary" type="text" placeholder="Your Name"> <br>
                 <input class="input is-primary" type="date" name="" id="start-date"> <br>
                 <input class="input is-primary" type="date" name="" id="end-date"> <br>
