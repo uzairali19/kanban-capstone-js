@@ -58,7 +58,6 @@ getData().then((v) => {
     mainBody.appendChild(mainDiv);
   }
   const resModal = document.querySelector('#res-modal');
-
   const reserve = document.querySelectorAll('.reservations');
   reserve.forEach((res) => {
     res.addEventListener('click', (e) => {
@@ -66,6 +65,7 @@ getData().then((v) => {
         const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/reservations?item_id=${id}`;
         const data = await fetch(url);
         const content = await data.json();
+        numberOfReservations(content);
         return content;
       };
 
@@ -80,8 +80,16 @@ getData().then((v) => {
         });
       };
       e.preventDefault();
+      function numberOfReservations(content) {
+        let myCount = content.length;
+        const resNo = document.getElementById('resNo');
+        if (myCount === undefined) {
+          myCount = 0;
+        }
+        resNo.innerText = `Count (${myCount})`;
+      }
+      
       const cardItem = e.target;
-
       for (let i = 0; i < 15; i++) {
         if (v[i].id === cardItem.id) {
           const resItem = `
@@ -89,8 +97,8 @@ getData().then((v) => {
             <div class="modal-content">
               <img class="res-img" src="${v[i].url}" alt="">
               <p class="res-meme-name">${v[i].name}</p>
+              <h3 id="resNo" class="counter">Count</h3>
               <div class="res-list">
-                
               </div>
               <h3 class="form-content subtitle">
                 Add a reservation
@@ -108,6 +116,7 @@ getData().then((v) => {
           addReservation(v[i].id);
           resModal.classList.toggle('is-active');
         }
+
       }
       if (resModal.classList.contains('is-active')) {
         const closeCard = document.querySelector('#close-modal');
@@ -116,7 +125,6 @@ getData().then((v) => {
           resModal.classList.remove('is-active');
         });
       }
-
       const createReservation = async (id) => {
         const username = document.getElementById('name').value;
         const startDate = document.getElementById('start-date').value;
@@ -127,6 +135,7 @@ getData().then((v) => {
           date_start: startDate,
           date_end: endDate,
         };
+        
         const data = await fetch(
           'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/reservations',
           {
@@ -140,7 +149,6 @@ getData().then((v) => {
         );
         return data;
       };
-
       const btn = document.getElementById('reservation-button');
       btn.addEventListener('click', () => {
         createReservation(btn.dataset.id).then((data) => {

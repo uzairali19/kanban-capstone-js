@@ -90,3 +90,8 @@ input {
 .hidden {
   display: none;
 }
+
+.counter {
+  color: #fff;
+  font-size: 1.5em;
+}
