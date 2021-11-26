@@ -1,6 +1,7 @@
 import 'font-awesome/css/font-awesome.min.css';
 import 'bulma/css/bulma.css';
 import './style.css';
+import commentsCard from './comments';
 
 const url = 'https://api.imgflip.com/get_memes';
 
@@ -12,10 +13,8 @@ const getData = async () => {
   return scores;
 };
 
-const cardJS = document.querySelector('#cardJS');
 const mainBody = document.querySelector('#body');
 const modal = document.querySelector('.modal');
-const closeModal = document.getElementById('close');
 
 getData().then((v) => {
   for (let i = 0; i < 15; i++) {
@@ -63,48 +62,6 @@ getData().then((v) => {
   }
 });
 
-function commentsCard(e) {
-  const itemID = e;
-  const memes = getData();
-  memes.then((v) => {
-    v.forEach((meme) => {
-      if (meme.id === itemID) {
-        const commentItem = `
-           <div class="card-image">
-              <figure class="image is-3by2">
-                <img
-                  src="${meme.url}"
-                  alt="Placeholder image"
-                />
-              </figure>              
-            </div>
-            <div class="card-content">
-              
-                <div class="content">
-                  <h2 class="subtitle is-3 is-spaced ">Name: ${meme.name}</h2>
-                  <p>height: ${meme.height}  Width: ${meme.width}</p>
-                  <p>Box count: ${meme.box_count}</p>
-
-                  
-                </div>
-
-                <div class="content">
-                  <h2 class="subtitel is-4 is-spaced" > Comments (2)</h2>
-                  <p>03/11/2021 Uzair: So funny!</p>
-                  <p>21/11/2021 Grace: Mhhhhhhh!!!</p>
-                </div>
-              </div>
-              
-              
-              `;
-        const cardItem = document.createElement('div');
-        cardItem.innerHTML = commentItem;
-        cardJS.appendChild(cardItem);
-      }
-    });
-  });
-}
-
 function manipulate(e) {
   const item = e.target;
 
@@ -113,10 +70,5 @@ function manipulate(e) {
     commentsCard(item.id);
   }
 }
-
-closeModal.addEventListener('click', (e) => {
-  e.preventDefault();
-  modal.classList.remove('is-active');
-});
 
 mainBody.addEventListener('click', manipulate);

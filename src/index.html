@@ -46,11 +46,15 @@
           <section class="modal-card-body">
             <div class="card">
               <div id="cardJS"></div>
-
+              <div  class="card-content">
+                <h2 class="subtitle is-2">Comments</h2>
+                <div id="commentList">
+                </div>
+              </div>
               <div class="card-content">
                 <div class="content">
-                  <h2 class="bubtitle is-2">Add a comment</h2>
-                  <form action="submit">
+                  <h2 class="subtitle is-2">Add a comment</h2>
+                  <form action="#" id="form">
                     <div class="field">
                       <input
                         class="input"
@@ -63,9 +67,11 @@
                       <textarea
                         class="textarea"
                         placeholder="Your insights"
+                        id="comment"
                       ></textarea>
                     </div>
-                    <button id="btn-comment" class="button is-success">Comment</button>
+                     <input type="hidden" id="thismemeId" name="thismemeId" value="">
+                    <button id="btn-comment" type="submit" class="button is-success">Comment</button>
                   </form>
                 </div>
               </div>
