@@ -15,7 +15,7 @@ const getData = async () => {
 
 const mainBody = document.querySelector('#body');
 
-const likeMeal = async (memeId) => {
+const likeMeme = async (memeId) => {
   await fetch(api, {
     method: 'POST',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -31,6 +31,15 @@ const getLikes = async (api) => {
     .then((resData) => resData)
     .catch((err) => err);
   return resp;
+};
+
+const memeCount = (memeData) => {
+  memeData.then((v) => {
+    const memes = document.querySelector('#meme-counter');
+    for (let i = 0; i < 15; i++) {
+      memes.innerHTML = `Elements shown ${i + 1}, Elements recieved ${v.length}`;
+    }
+  });
 };
 
 getData().then((v) => {
@@ -96,12 +105,15 @@ getData().then((v) => {
   likeBtn.forEach((v) => {
     v.addEventListener('click', (e) => {
       e.preventDefault();
-      likeMeal(v.id);
+      likeMeme(v.id);
       likeText.forEach((text, i) => {
         if (text.id === v.id) {
           text.innerHTML = `${likes[i] + e.detail} likes`;
         }
       });
+      v.style.color = 'red';
     });
   });
 });
+
+memeCount(getData());
