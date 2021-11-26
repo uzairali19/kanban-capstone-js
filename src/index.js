@@ -2,7 +2,6 @@ import 'font-awesome/css/font-awesome.min.css';
 import 'bulma/css/bulma.css';
 import './style.css';
 
-
 const url = 'https://api.imgflip.com/get_memes';
 
 const getData = async () => {
@@ -63,8 +62,26 @@ getData().then((v) => {
   const reserve = document.querySelectorAll('.reservations');
   reserve.forEach((res) => {
     res.addEventListener('click', (e) => {
+      const getData = async (id) => {
+        const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/reservations?item_id=${id}`;
+        const data = await fetch(url);
+        const content = await data.json();
+        return content;
+      };
+
+      const addReservation = (id) => {
+        const reservationList = document.querySelector('.res-list');
+        getData(id).then((data) => {
+          reservationList.innerHTML = '';
+          data.forEach((e) => {
+            reservationList.innerHTML += `
+            <p>${e.date_end} to ${e.date_start} by ${e.username}</p>`;
+          });
+        });
+      };
       e.preventDefault();
       const cardItem = e.target;
+
       for (let i = 0; i < 15; i++) {
         if (v[i].id === cardItem.id) {
           const resItem = `
@@ -73,10 +90,7 @@ getData().then((v) => {
               <img class="res-img" src="${v[i].url}" alt="">
               <p class="res-meme-name">${v[i].name}</p>
               <div class="res-list">
-                <p class="start-date">11/11/2021</p>
-                <p>-</p>
-                <p class="start-end">03/12/2021</p>
-                <p class="res-name">Henry G</p>
+                
               </div>
               <h3 class="form-content subtitle">
                 Add a reservation
@@ -85,12 +99,13 @@ getData().then((v) => {
                 <input id="name" class="input is-primary" type="text" placeholder="Your Name" name="user"> <br>
                 <input class="input is-primary" type="date" name="" id="start-date"> <br>
                 <input class="input is-primary" type="date" name="" id="end-date"> <br>
-                <input class="hidden" type="text" name="" id="item-id" value="${v[i].id}"> <br>
               </form>
-              <button type="submit" class="res-button button is-primary" id="reservation-button">Reservation</button>
+              <button type="submit" class="res-button button is-primary" data-id="${v[i].id}" id="reservation-button">Reservation</button>
             </div>
             <button id="close-modal" class="modal-close is-large" aria-label="close"></button>`;
+
           resModal.innerHTML = resItem;
+          addReservation(v[i].id);
           resModal.classList.toggle('is-active');
         }
       }
@@ -101,58 +116,39 @@ getData().then((v) => {
           resModal.classList.remove('is-active');
         });
       }
-      // get data from api
-           
-      //post data
-      // create object to post 
-      const username = document.getElementById('name').value;
-      const startDate = document.getElementById('start-date').value;
-      const endDate = document.getElementById('end-date').value;
-      const itemId = document.getElementById('item-id').value
-      const dataObj = {
-          "item_id": itemId,
-          "username": username,
-          "date_start": startDate,
-          "date_end": endDate
-      }
-      
-      const createReservation = async () => {
-        const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/reservations'
-        const data = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
+
+      const createReservation = async (id) => {
+        const username = document.getElementById('name').value;
+        const startDate = document.getElementById('start-date').value;
+        const endDate = document.getElementById('end-date').value;
+        const dataObj = {
+          item_id: id,
+          username,
+          date_start: startDate,
+          date_end: endDate,
+        };
+        const data = await fetch(
+          'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/reservations',
+          {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataObj),
           },
-          body: JSON.stringify(dataObj),
+        );
+        return data;
+      };
+
+      const btn = document.getElementById('reservation-button');
+      btn.addEventListener('click', () => {
+        createReservation(btn.dataset.id).then((data) => {
+          if (data.status === 201) {
+            addReservation(btn.dataset.id);
+          }
         });
-          console.log(data)
-      };
-          const btn =  document.getElementById('reservation-button');
-          btn.addEventListener('click',(e)=>{
-            e.preventDefault();
-            createReservation();
-            getData();
-            console.log(createReservation());
-          })
-          
- 
-      // add ther
-      const getData = async () => {
-        const url = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/reservations?item_id=item1'
-        const data = await fetch(url);
-        const content = await data.json();
-        console.log(content)
-      };
-
-
-      
+      });
     });
   });
 });
-
-// we can grab the data from Ui, SEND IT 
-
-// GetData function should run after post data 
-
-// ADD those data to ui 
