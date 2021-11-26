@@ -85,3 +85,7 @@ input {
   gap: 5px;
   color: #fff;
 }
+
+.hidden {
+  display: none;
+}
