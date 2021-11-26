@@ -1,15 +1,10 @@
-const memeCount = (memeData) => {
+const memeCount = (memeData, body) => {
   memeData.then((v) => {
     const memes = document.querySelector('#meme-counter');
-    for (let i = 0; i < 15; i++) {
-      memes.innerHTML = `Elements shown ${i + 1}, Elements recieved ${v.length}`;
-      count++;
-    }
+    const bodyCount = body.childElementCount;
+    memes.innerHTML = `Elements shown ${bodyCount}, Elements recieved ${v.length}`;
   });
 };
 
-const counter = (v) => {
-  return v.childElementCount;
-};
-
+const counter = (v) => v.childElementCount;
 module.exports = { memeCount, counter };

@@ -50,6 +50,7 @@ getData(url).then((v) => {
     mainBody.appendChild(mainDiv);
   }
 
+  memeCount(getData(url), mainBody);
   const likeBtn = document.querySelectorAll('.like');
   const likeText = document.querySelectorAll('.like-text');
   const id = [];
@@ -82,5 +83,3 @@ getData(url).then((v) => {
     });
   });
 });
-
-memeCount(getData(url));
