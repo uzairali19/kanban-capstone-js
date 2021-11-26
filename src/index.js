@@ -59,6 +59,14 @@ getData().then((v) => {
   }
   const resModal = document.querySelector('#res-modal');
   const reserve = document.querySelectorAll('.reservations');
+  function numberOfReservations(content) {
+    let myCount = content.length;
+    const resNo = document.getElementById('resNo');
+    if (myCount === undefined) {
+      myCount = 0;
+    }
+    resNo.innerText = `Count (${myCount})`;
+  }
   reserve.forEach((res) => {
     res.addEventListener('click', (e) => {
       const getData = async (id) => {
@@ -80,15 +88,7 @@ getData().then((v) => {
         });
       };
       e.preventDefault();
-      function numberOfReservations(content) {
-        let myCount = content.length;
-        const resNo = document.getElementById('resNo');
-        if (myCount === undefined) {
-          myCount = 0;
-        }
-        resNo.innerText = `Count (${myCount})`;
-      }
-      
+
       const cardItem = e.target;
       for (let i = 0; i < 15; i++) {
         if (v[i].id === cardItem.id) {
@@ -116,7 +116,6 @@ getData().then((v) => {
           addReservation(v[i].id);
           resModal.classList.toggle('is-active');
         }
-
       }
       if (resModal.classList.contains('is-active')) {
         const closeCard = document.querySelector('#close-modal');
@@ -135,7 +134,7 @@ getData().then((v) => {
           date_start: startDate,
           date_end: endDate,
         };
-        
+
         const data = await fetch(
           'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/reservations',
           {
