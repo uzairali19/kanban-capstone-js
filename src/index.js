@@ -1,48 +1,15 @@
 import 'font-awesome/css/font-awesome.min.css';
 import 'bulma/css/bulma.css';
 import './style.css';
+import { memeCount } from './counter';
+import { getData, getLikes, likeMeme } from './apiHandle';
 
 const url = 'https://api.imgflip.com/get_memes';
 const api = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/likes';
 
-const getData = async () => {
-  const scores = await fetch(url)
-    .then((res) => res.json())
-    .then((resData) => resData.data.memes)
-    .catch((err) => err);
-  return scores;
-};
-
 const mainBody = document.querySelector('#body');
 
-const likeMeme = async (memeId) => {
-  await fetch(api, {
-    method: 'POST',
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify({
-      item_id: memeId,
-    }),
-  });
-};
-
-const getLikes = async (api) => {
-  const resp = await fetch(api)
-    .then((res) => res.json())
-    .then((resData) => resData)
-    .catch((err) => err);
-  return resp;
-};
-
-const memeCount = (memeData) => {
-  memeData.then((v) => {
-    const memes = document.querySelector('#meme-counter');
-    for (let i = 0; i < 15; i++) {
-      memes.innerHTML = `Elements shown ${i + 1}, Elements recieved ${v.length}`;
-    }
-  });
-};
-
-getData().then((v) => {
+getData(url).then((v) => {
   for (let i = 0; i < 15; i++) {
     if (v[i].name.length > 40) {
       v[i].name = `${v[i].name.substr(0, 23)}..`;
@@ -105,7 +72,7 @@ getData().then((v) => {
   likeBtn.forEach((v) => {
     v.addEventListener('click', (e) => {
       e.preventDefault();
-      likeMeme(v.id);
+      likeMeme(api, v.id);
       likeText.forEach((text, i) => {
         if (text.id === v.id) {
           text.innerHTML = `${likes[i] + e.detail} likes`;
@@ -116,4 +83,4 @@ getData().then((v) => {
   });
 });
 
-memeCount(getData());
+memeCount(getData(url));
