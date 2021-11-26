@@ -19,11 +19,22 @@ const loadComments = (comments) => {
   comments.forEach((comment) => board(comment));
 };
 
+function numberOfComments(comments) {
+  let myCount = comments.length;
+  const commentsNo = document.getElementById('commentsNo');
+  if (myCount === undefined) {
+    myCount = 0;
+  }
+
+  commentsNo.innerText = `Comments (${myCount})`;
+}
+
 const getComments = async () => {
   const itemId = document.getElementById('thismemeId').value;
   const geturl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/comments?item_id=${itemId}`;
   const request = await fetch(geturl);
   const comments = await request.json();
+  numberOfComments(comments);
   loadComments(comments);
 };
 
