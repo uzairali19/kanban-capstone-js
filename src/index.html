@@ -54,20 +54,22 @@
               <div class="card-content">
                 <div class="content">
                   <h2 class="subtitle is-2">Add a comment</h2>
-                  <form action="#" id="form">
+                  <form action="#" id="form" method="post">
                     <div class="field">
                       <input
                         class="input"
                         type="text"
                         id="name"
                         placeholder="Your Name"
-                      />
+                        required
+                      >
                     </div>
                     <div class="field">
                       <textarea
                         class="textarea"
                         placeholder="Your insights"
                         id="comment"
+                        required
                       ></textarea>
                     </div>
                      <input type="hidden" id="thismemeId" name="thismemeId" value="">

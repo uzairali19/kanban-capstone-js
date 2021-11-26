@@ -42,13 +42,14 @@ const addComment = async () => {
       body: JSON.stringify(newComment),
     })
   );
+  getComments();
 };
 
 const cardJS = document.querySelector('#cardJS');
 const modal = document.querySelector('.modal');
 const closeModal = document.getElementById('close');
 const thismemeId = document.getElementById('thismemeId');
-const commentBtn = document.getElementById('btn-comment');
+const form = document.getElementById('form');
 const myList = document.getElementById('commentList');
 
 export default function commentsCard(e) {
@@ -85,10 +86,11 @@ export default function commentsCard(e) {
   });
 }
 
-commentBtn.addEventListener('click', (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
   addComment();
   document.getElementById('form').reset();
+  myList.innerHTML = '';
 });
 
 closeModal.addEventListener('click', (e) => {
