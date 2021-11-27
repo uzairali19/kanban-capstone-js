@@ -16,7 +16,8 @@
       "eol-last": "off",
       "class-methods-use-this":"off",
       "import/no-unresolved": "off",
-      "no-plusplus": "off"
+      "no-plusplus": "off",
+      "no-unused-vars": "off"
     },
     "ignorePatterns": [
       "dist/",
