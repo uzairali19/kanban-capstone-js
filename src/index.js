@@ -7,7 +7,6 @@ import commentsCard from './comments';
 import { memeCount } from './counter';
 import { getData, getLikes, likeMeme } from './apiHandle';
 
-
 const url = 'https://api.imgflip.com/get_memes';
 const api = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/likes';
 
@@ -62,16 +61,16 @@ getData(url).then((v) => {
     mainBody.appendChild(mainDiv);
   }
 
-function manipulate(e) {
-  const item = e.target;
+  function manipulate(e) {
+    const item = e.target;
 
-  if (item.classList.contains('modal-button')) {
-    modal.classList.add('is-active');
-    commentsCard(item.id);
+    if (item.classList.contains('modal-button')) {
+      modal.classList.add('is-active');
+      commentsCard(item.id);
+    }
   }
-}
 
-mainBody.addEventListener('click', manipulate);
+  mainBody.addEventListener('click', manipulate);
   memeCount(getData(url), mainBody);
   const likeBtn = document.querySelectorAll('.like');
   const likeText = document.querySelectorAll('.like-text');
@@ -105,4 +104,3 @@ mainBody.addEventListener('click', manipulate);
     });
   });
 });
-
