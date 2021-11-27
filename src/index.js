@@ -1,9 +1,7 @@
 import 'font-awesome/css/font-awesome.min.css';
 import 'bulma/css/bulma.css';
 import './style.css';
-
 import commentsCard from './comments';
-
 import { memeCount } from './counter';
 import { getData, getLikes, likeMeme } from './apiHandle';
 
@@ -176,12 +174,16 @@ getData(url).then((v) => {
   window.addEventListener('load', (e) => {
     e.preventDefault();
     getLikes(api).then((b) => {
+      const getId = [];
+      const getLikes = [];
       b.forEach((v) => {
-        likeText.forEach((text) => {
-          if (text.id === v.item_id) {
-            text.innerHTML = `${v.likes} likes`;
-          }
-        });
+        getId.push(v.item_id);
+        getLikes.push(v.likes);
+      });
+      likeText.forEach((text, i) => {
+        if (text.id === getId[i]) {
+          text.innerHTML = `${getLikes[i]} likes`;
+        }
       });
     });
   });
