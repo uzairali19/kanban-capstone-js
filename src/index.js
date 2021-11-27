@@ -172,31 +172,37 @@ getData(url).then((v) => {
   memeCount(getData(url), mainBody);
   const likeBtn = document.querySelectorAll('.like');
   const likeText = document.querySelectorAll('.like-text');
-  const id = [];
-  const likes = [];
+
   window.addEventListener('load', (e) => {
     e.preventDefault();
     getLikes(api).then((b) => {
       b.forEach((v) => {
-        id.push(v.item_id);
-        likes.push(v.likes);
-      });
-      likeText.forEach((text, i) => {
-        if (text.id === id[i]) {
-          text.innerHTML = `${likes[i]} likes`;
-        }
+        likeText.forEach((text) => {
+          if (text.id === v.item_id) {
+            text.innerHTML = `${v.likes} likes`;
+          }
+        });
       });
     });
   });
 
-  likeBtn.forEach((v) => {
+  const id = [];
+  const likes = [];
+  likeBtn.forEach((v, i) => {
     v.addEventListener('click', (e) => {
       e.preventDefault();
       likeMeme(api, v.id);
-      likeText.forEach((text, i) => {
-        if (text.id === v.id) {
-          text.innerHTML = `${likes[i] + e.detail} likes`;
-        }
+      getLikes(api).then((c) => {
+        c.forEach((v) => {
+          id.push(v.item_id);
+          likes.push(v.likes);
+        });
+        likeText.forEach((text, i) => {
+          if (text.id === v.id) {
+            likes[i]++;
+            text.innerHTML = `${likes[i]} likes`;
+          }
+        });
       });
       v.style.color = 'red';
     });
