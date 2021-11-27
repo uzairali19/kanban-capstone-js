@@ -5,12 +5,14 @@
     "scripts": {
         "watch": "webpack --watch",
         "start": "webpack serve --open",
-        "build": "webpack"
+        "build": "webpack",
+        "test": "jest --watch --silent=false"
     },
     "keywords": [],
     "author": "Uzair Ali & Mphatso Lichapa",
     "license": "ISC",
     "devDependencies": {
+        "@babel/plugin-transform-modules-commonjs": "^7.16.0",
         "babel-eslint": "^10.1.0",
         "css-loader": "^6.5.0",
         "eslint": "^7.32.0",
@@ -18,6 +20,8 @@
         "eslint-plugin-import": "^2.25.2",
         "hint": "^6.1.9",
         "html-webpack-plugin": "^5.5.0",
+        "jest": "^27.3.1",
+        "node-fetch": "^3.1.0",
         "style-loader": "^3.3.1",
         "stylelint": "^13.13.1",
         "stylelint-config-standard": "^21.0.0",
@@ -31,6 +35,7 @@
         "@fortawesome/fontawesome-free": "^5.15.4",
         "bulma": "^0.9.3",
         "font-awesome": "^4.7.0",
+        "jsdom": "^18.1.1",
         "lodash": "^4.17.21"
     }
 }
