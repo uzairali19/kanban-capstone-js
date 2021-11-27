@@ -2,20 +2,24 @@ import 'font-awesome/css/font-awesome.min.css';
 import 'bulma/css/bulma.css';
 import './style.css';
 
-const url = 'https://api.imgflip.com/get_memes';
+import commentsCard from './comments';
 
-const getData = async () => {
-  const resData = await fetch(url)
-    .then((res) => res.json())
-    .then((resData) => resData.data.memes)
-    .catch((err) => err);
-  return resData;
-};
+import { memeCount } from './counter';
+import { getData, getLikes, likeMeme } from './apiHandle';
+
+
+const url = 'https://api.imgflip.com/get_memes';
+const api = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/likes';
+
 
 const mainBody = document.querySelector('#body');
+const modal = document.querySelector('.modal');
 
-getData().then((v) => {
+getData(url).then((v) => {
   for (let i = 0; i < 15; i++) {
+    if (v[i].name.length > 40) {
+      v[i].name = `${v[i].name.substr(0, 23)}..`;
+    }
     const bodyItems = `<article class="media">
       <figure class="media-left">
         <p class="image">
@@ -30,16 +34,17 @@ getData().then((v) => {
         </div>
         <nav class="level is-mobile">
           <div class="level-left">
-            <a class="level-item">
+            <a id="${v[i].id}" class="level-item like">
               <span class="icon is-small"
                 ><i class="fa fa-heart"></i>
-              </span>
-              <p class="like-text">like</p>
+              </span> 
             </a>
+            <p id="${v[i].id}" class="like-text"></p>
           </div>
         </nav>
         <div class="level">
-          <button
+          <button 
+            id="${v[i].id}"
             class="modal-button button is-primary is-small"
             data-target="modal"
             aria-haspopup="true"
@@ -57,6 +62,7 @@ getData().then((v) => {
     mainDiv.innerHTML = bodyItems;
     mainBody.appendChild(mainDiv);
   }
+
   const resModal = document.querySelector('#res-modal');
   const reserve = document.querySelectorAll('.reservations');
   function numberOfReservations(content) {
@@ -156,6 +162,47 @@ getData().then((v) => {
           }
         });
       });
+  function manipulate(e) {
+    const item = e.target;
+
+    if (item.classList.contains('modal-button')) {
+      modal.classList.add('is-active');
+      commentsCard(item.id);
+    }
+  }
+
+  mainBody.addEventListener('click', manipulate);
+  memeCount(getData(url), mainBody);
+  const likeBtn = document.querySelectorAll('.like');
+  const likeText = document.querySelectorAll('.like-text');
+  const id = [];
+  const likes = [];
+  window.addEventListener('load', (e) => {
+    e.preventDefault();
+    getLikes(api).then((b) => {
+      b.forEach((v) => {
+        id.push(v.item_id);
+        likes.push(v.likes);
+      });
+      likeText.forEach((text, i) => {
+        if (text.id === id[i]) {
+          text.innerHTML = `${likes[i]} likes`;
+        }
+      });
+    });
+  });
+
+  likeBtn.forEach((v) => {
+    v.addEventListener('click', (e) => {
+      e.preventDefault();
+      likeMeme(api, v.id);
+      likeText.forEach((text, i) => {
+        if (text.id === v.id) {
+          text.innerHTML = `${likes[i] + e.detail} likes`;
+        }
+      });
+      v.style.color = 'red';
+
     });
   });
 });

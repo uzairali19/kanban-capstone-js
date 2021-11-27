@@ -11,13 +11,14 @@
       <div class="container">
         <div class="navbar">
           <a class="navbar-item" href="#">MEME WORLD</a>
-
           <a
             role="button"
             class="navbar-burger"
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample">
+          <p id="meme-counter" class="navbar-item"></p>
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -25,31 +26,58 @@
         </div>
       </div>
     </nav>
-
     <section class="hero is-link is-fullheight-with-navbar">
       <div class="hero-body" id="heroBody">
         <div class="container">
           <div class="flex-container" id="body"></div>
-          <div class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-              <header class="modal-card-head">
-                <p class="modal-card-title">Modal title</p>
-                <button
-                  class="delete"
-                  aria-label="close"
-                  type="button"
-                ></button>
-              </header>
-              <section class="modal-card-body"></section>
-              <footer class="modal-card-foot">
-                <button type="button" class="button is-success">
-                  Save changes
-                </button>
-                <button class="button" type="button">Cancel</button>
-              </footer>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Comments</p>
+            <button id="close" class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <div class="card">
+              <div id="cardJS"></div>
+              <div  class="card-content">
+                <h2  id="commentsNo" class="subtitle is-2"> </h2>
+                <div id="commentList">
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="content">
+                  <h2 class="subtitle is-2">Add a comment</h2>
+                  <form action="#" id="form" method="post">
+                    <div class="field">
+                      <input
+                        class="input"
+                        type="text"
+                        id="name"
+                        placeholder="Your Name"
+                        required
+                      >
+                    </div>
+                    <div class="field">
+                      <textarea
+                        class="textarea"
+                        placeholder="Your insights"
+                        id="comment"
+                        required
+                      ></textarea>
+                    </div>
+                     <input type="hidden" id="thismemeId" name="thismemeId" value="">
+                    <button id="btn-comment" type="submit" class="button is-success">Comment</button>
+                  </form>
+                </div>
+              </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </section>
@@ -60,17 +88,12 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
-          <strong>MEME World</strong> by
-          <a href="https://github.com/uzairali19">Uzair, </a
-          ><a href="https://github.com/Lichapa">Ulemu </a> &<a
+          <strong>MEME World</strong> by <a href="https://github.com/uzairali19">Uzair, </a><a href="https://github.com/Lichapa">Mphatso </a> &<a
             href="https://github.com/gracekabaghe"
           >
             Grace</a
-          >. The source code is licensed
-          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The
-          website content is licensed
-          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-            >CC BY NC SA 4.0</a>
+          >. The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content is licensed
+          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
         </p>
       </div>
     </footer>
