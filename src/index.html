@@ -34,38 +34,26 @@
         <div class="modal-card">
           <header class="modal-card-head">
             <p class="modal-card-title">Comments</p>
-            <button id="close" class="delete" aria-label="close"></button>
+            <button id="close" class="delete" aria-label="close" type="button"></button>
           </header>
           <section class="modal-card-body">
             <div class="card">
               <div id="cardJS"></div>
-              <div  class="card-content">
-                <h2  id="commentsNo" class="subtitle is-2"> </h2>
-                <div id="commentList">
-                </div>
+              <div class="card-content">
+                <h2 id="commentsNo" class="subtitle is-2"></h2>
+                <div id="commentList"></div>
               </div>
               <div class="card-content">
                 <div class="content">
                   <h2 class="subtitle is-2">Add a comment</h2>
                   <form action="#" id="form" method="post">
                     <div class="field">
-                      <input
-                        class="input"
-                        type="text"
-                        id="name"
-                        placeholder="Your Name"
-                        required
-                      >
+                      <input class="input" type="text" id="name" placeholder="Your Name" required />
                     </div>
                     <div class="field">
-                      <textarea
-                        class="textarea"
-                        placeholder="Your insights"
-                        id="comment"
-                        required
-                      ></textarea>
+                      <textarea class="textarea" placeholder="Your insights" id="comment" required></textarea>
                     </div>
-                     <input type="hidden" id="thismemeId" name="thismemeId" value="">
+                    <input type="hidden" id="thismemeId" name="thismemeId" value="" />
                     <button id="btn-comment" type="submit" class="button is-success">Comment</button>
                   </form>
                 </div>
@@ -75,10 +63,12 @@
         </div>
       </div>
     </section>
+
+    <div id="res-modal" class="modal"></div>
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
-          <strong>MEME World</strong> by <a href="https://github.com/uzairali19">Uzair, </a><a href="https://github.com/Lichapa">Ulemu </a> &<a
+          <strong>MEME World</strong> by <a href="https://github.com/uzairali19">Uzair, </a><a href="https://github.com/Lichapa">Mphatso </a> &<a
             href="https://github.com/gracekabaghe"
           >
             Grace</a

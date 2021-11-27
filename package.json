@@ -6,7 +6,8 @@
         "watch": "webpack --watch",
         "start": "webpack serve --open",
         "build": "webpack",
-        "test": "jest --watch --silent=false"
+        "test": "jest --watch --silent=false",
+        "jest": "j sdom"
     },
     "keywords": [],
     "author": "Uzair Ali & Mphatso Lichapa",
@@ -32,7 +33,10 @@
         "webpack-dev-server": "^4.3.1"
     },
     "dependencies": {
+        "@babel/core": "^7.16.0",
+        "@babel/preset-env": "^7.16.4",
         "@fortawesome/fontawesome-free": "^5.15.4",
+        "babel-jest": "^27.3.1",
         "bulma": "^0.9.3",
         "font-awesome": "^4.7.0",
         "jsdom": "^18.1.1",
