@@ -7,10 +7,8 @@ import commentsCard from './comments';
 import { memeCount } from './counter';
 import { getData, getLikes, likeMeme } from './apiHandle';
 
-
 const url = 'https://api.imgflip.com/get_memes';
 const api = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/likes';
-
 
 const mainBody = document.querySelector('#body');
 const modal = document.querySelector('.modal');
@@ -88,6 +86,7 @@ getData(url).then((v) => {
         getData(id).then((data) => {
           reservationList.innerHTML = '';
           data.forEach((e) => {
+            console.log(e.username);
             reservationList.innerHTML += `
             <p>${e.date_end} to ${e.date_start} by ${e.username}</p>`;
           });
@@ -110,7 +109,7 @@ getData(url).then((v) => {
                 Add a reservation
               </h3>
               <form class="res-form" action="#">
-                <input id="name" class="input is-primary" type="text" placeholder="Your Name" name="user"> <br>
+                <input id="rsname" class="input is-primary" type="text" placeholder="Your Name" name="user"> <br>
                 <input class="input is-primary" type="date" name="" id="start-date"> <br>
                 <input class="input is-primary" type="date" name="" id="end-date"> <br>
               </form>
@@ -131,27 +130,25 @@ getData(url).then((v) => {
         });
       }
       const createReservation = async (id) => {
-        const username = document.getElementById('name').value;
+        const username = document.getElementById('rsname').value;
+        console.log(username);
         const startDate = document.getElementById('start-date').value;
         const endDate = document.getElementById('end-date').value;
         const dataObj = {
           item_id: id,
-          username,
+          username: username,
           date_start: startDate,
           date_end: endDate,
         };
 
-        const data = await fetch(
-          'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/reservations',
-          {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(dataObj),
+        const data = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/reservations', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
           },
-        );
+          body: JSON.stringify(dataObj),
+        });
         return data;
       };
       const btn = document.getElementById('reservation-button');
@@ -162,6 +159,8 @@ getData(url).then((v) => {
           }
         });
       });
+    });
+  });
   function manipulate(e) {
     const item = e.target;
 
@@ -202,7 +201,6 @@ getData(url).then((v) => {
         }
       });
       v.style.color = 'red';
-
     });
   });
 });

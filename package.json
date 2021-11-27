@@ -6,8 +6,8 @@
         "watch": "webpack --watch",
         "start": "webpack serve --open",
         "build": "webpack",
-        "test": "jest --watch --silent=false"
-        "jest": "j sdom",
+        "test": "jest --watch --silent=false",
+        "jest": "j sdom"
     },
     "keywords": [],
     "author": "Uzair Ali & Mphatso Lichapa",
