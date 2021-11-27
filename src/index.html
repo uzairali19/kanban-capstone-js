@@ -27,6 +27,54 @@
         </div>
       </div>
     </section>
+
+    <section>
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Comments</p>
+            <button id="close" class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <div class="card">
+              <div id="cardJS"></div>
+              <div  class="card-content">
+                <h2  id="commentsNo" class="subtitle is-2"> </h2>
+                <div id="commentList">
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="content">
+                  <h2 class="subtitle is-2">Add a comment</h2>
+                  <form action="#" id="form" method="post">
+                    <div class="field">
+                      <input
+                        class="input"
+                        type="text"
+                        id="name"
+                        placeholder="Your Name"
+                        required
+                      >
+                    </div>
+                    <div class="field">
+                      <textarea
+                        class="textarea"
+                        placeholder="Your insights"
+                        id="comment"
+                        required
+                      ></textarea>
+                    </div>
+                     <input type="hidden" id="thismemeId" name="thismemeId" value="">
+                    <button id="btn-comment" type="submit" class="button is-success">Comment</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
     <footer class="footer">
       <div class="content has-text-centered">
         <p>

@@ -1,6 +1,9 @@
 import 'font-awesome/css/font-awesome.min.css';
 import 'bulma/css/bulma.css';
 import './style.css';
+
+import commentsCard from './comments';
+
 import { memeCount } from './counter';
 import { getData, getLikes, likeMeme } from './apiHandle';
 
@@ -8,6 +11,7 @@ const url = 'https://api.imgflip.com/get_memes';
 const api = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/mma6q7VN5qNR4YprTjTv/likes';
 
 const mainBody = document.querySelector('#body');
+const modal = document.querySelector('.modal');
 
 getData(url).then((v) => {
   for (let i = 0; i < 15; i++) {
@@ -37,7 +41,14 @@ getData(url).then((v) => {
           </div>
         </nav>
         <div class="level">
-          <button class="button is-primary is-small">Comments</button>
+          <button 
+            id="${v[i].id}"
+            class="modal-button button is-primary is-small"
+            data-target="modal"
+            aria-haspopup="true"
+            >
+            Comments
+            </button>
           <button class="button is-warning is-small">
             Reservations
           </button>
@@ -50,6 +61,16 @@ getData(url).then((v) => {
     mainBody.appendChild(mainDiv);
   }
 
+  function manipulate(e) {
+    const item = e.target;
+
+    if (item.classList.contains('modal-button')) {
+      modal.classList.add('is-active');
+      commentsCard(item.id);
+    }
+  }
+
+  mainBody.addEventListener('click', manipulate);
   memeCount(getData(url), mainBody);
   const likeBtn = document.querySelectorAll('.like');
   const likeText = document.querySelectorAll('.like-text');
