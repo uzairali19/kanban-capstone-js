@@ -86,7 +86,6 @@ getData(url).then((v) => {
         getData(id).then((data) => {
           reservationList.innerHTML = '';
           data.forEach((e) => {
-            console.log(e.username);
             reservationList.innerHTML += `
             <p>${e.date_end} to ${e.date_start} by ${e.username}</p>`;
           });
@@ -131,12 +130,11 @@ getData(url).then((v) => {
       }
       const createReservation = async (id) => {
         const username = document.getElementById('rsname').value;
-        console.log(username);
         const startDate = document.getElementById('start-date').value;
         const endDate = document.getElementById('end-date').value;
         const dataObj = {
           item_id: id,
-          username: username,
+          username,
           date_start: startDate,
           date_end: endDate,
         };
