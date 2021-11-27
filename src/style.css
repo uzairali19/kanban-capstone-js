@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.navbar {
+  width: 100%;
+  justify-content: center;
+}
+
+#heroBody {
+  align-items: flex-start;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  top: 0;
+}
+
+.main-div {
+  text-align: center;
+  display: contents;
+}
+
+.media-left {
+  width: 100%;
+}
+
+.media {
+  flex-direction: column;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  margin-left: 30px;
+  margin-bottom: 130px;
+}
+
+.media-content {
+  width: 100%;
+}
+
+.like-text {
+  margin-left: 30px;
+}
+
+.image > img {
+  height: 170px;
+  width: 200px;
+}
+
+.show {
+  display: block;
+}
+
+.res-meme-name,
+.form-content {
+  margin-left: 40%;
+  color: #fff;
+}
+
+input {
+  margin-bottom: 10px;
+  width: 40%;
+}
+
+.input,
+.text-area {
+  width: 80%;
+}
+
+.res-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #fff;
+}
+
+.hidden {
+  display: none;
+}
+
+.counter {
+  color: #fff;
+  font-size: 1.5em;
+}
