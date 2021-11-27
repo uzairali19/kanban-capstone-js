@@ -188,7 +188,7 @@ getData(url).then((v) => {
 
   const id = [];
   const likes = [];
-  likeBtn.forEach((v, i) => {
+  likeBtn.forEach((v) => {
     v.addEventListener('click', (e) => {
       e.preventDefault();
       likeMeme(api, v.id);
