@@ -15,6 +15,11 @@
 
 To get a local copy up and running follow these simple example steps.
 
+
+### Video demonstration
+
+[Demo Video](https://www.loom.com/share/c2f11a6431d94a8e8d93d4fe5fbdc8e7)
+
 ### Setup
 
 Run 
